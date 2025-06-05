@@ -2,7 +2,7 @@ window.Telegram.WebApp.ready();
 Telegram.WebApp.expand(); // Разворачивает окно
 
 // Запрос к backend API
-fetch("http://localhost:8000/userdata")
+fetch("https://bimmaxpro.onrender.com/userdata")
   .then((response) => response.json())
   .then((data) => {
     // Создаём HTML с полученными данными
