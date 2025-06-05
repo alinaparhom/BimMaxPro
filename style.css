@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: "Segoe UI", "Roboto", sans-serif;
   background-color: var(--tg-theme-bg-color, #ffffff);
   color: var(--tg-theme-text-color, #000000);
   overflow: hidden;
@@ -24,20 +24,51 @@ body {
   height: 100vh;
   flex-shrink: 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  font-size: 24px;
+  justify-content: center;
   padding: 20px;
+  box-sizing: border-box;
   text-align: center;
+  position: relative;
 }
 
 .page-main h1 {
-  font-size: 48px;
-  margin-bottom: 10px;
+  font-size: 52px;
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: 1px;
+  color: var(--tg-theme-button-color, #0088cc);
 }
+
 .page-main p {
   font-size: 20px;
-  opacity: 0.8;
+  font-weight: 500;
+  margin-top: 12px;
+  color: var(--tg-theme-hint-color, #666);
+}
+
+.model-container {
+  width: 100%;
+  height: 75vh;
+}
+
+.object-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+.progress {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--tg-theme-text-color, #fff);
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .carousel-indicators {
@@ -54,7 +85,7 @@ body {
   height: 10px;
   border-radius: 50%;
   background: var(--tg-theme-hint-color, #999);
-  opacity: 0.4;
+  opacity: 0.3;
 }
 
 .dot.active {
