@@ -1,10 +1,63 @@
 body {
+  margin: 0;
+  font-family: sans-serif;
   background-color: var(--tg-theme-bg-color, #ffffff);
   color: var(--tg-theme-text-color, #000000);
-  font-family: sans-serif;
-  padding: 20px;
+  overflow: hidden;
 }
 
-h1, h2, p {
-  color: var(--tg-theme-text-color, #000000);
+.carousel {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  width: 500vw; /* 5 страниц */
+  height: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.page {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  padding: 20px;
+  text-align: center;
+}
+
+.page-main h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+.page-main p {
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--tg-theme-hint-color, #999);
+  opacity: 0.4;
+}
+
+.dot.active {
+  background: var(--tg-theme-button-color, #0088cc);
+  opacity: 1;
 }
