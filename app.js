@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", () => {
-  window.Telegram.WebApp.ready();
+  Telegram.WebApp.ready();
   Telegram.WebApp.expand();
 
   const track = document.querySelector(".carousel-track");
@@ -43,8 +43,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function initViewer(containerId, modelPath) {
     const container = document.getElementById(containerId);
-    if (!container || typeof THREE === "undefined") {
-      console.error("Three.js не загружен или контейнер не найден.");
+    if (!container || typeof THREE === "undefined" || typeof THREE.GLTFLoader === "undefined") {
+      console.error("Three.js или GLTFLoader не загружены или контейнер не найден:", containerId);
       return;
     }
 
