@@ -55,18 +55,16 @@ window.addEventListener("DOMContentLoaded", () => {
       0.1,
       1000
     );
-    camera.position.set(0, 160, 200); // поднято и отдалено
-    camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
 
     const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(5, 5, 5);
+    light.position.set(5, 10, 10);
     scene.add(light);
 
-    const ambient = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.4);
     scene.add(ambient);
 
     const loader = new THREE.GLTFLoader();
@@ -77,6 +75,19 @@ window.addEventListener("DOMContentLoaded", () => {
         model.scale.set(1.5, 1.5, 1.5);
         model.position.y = -1.5;
         scene.add(model);
+
+        // Автоматическая настройка камеры
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fov = camera.fov * (Math.PI / 180);
+        let distance = maxDim / (2 * Math.tan(fov / 2));
+        distance *= 1.5; // запас
+
+        camera.position.set(center.x, center.y + maxDim * 0.5, center.z + distance);
+        camera.lookAt(center);
 
         function animate() {
           requestAnimationFrame(animate);
