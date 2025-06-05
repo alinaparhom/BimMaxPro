@@ -9,30 +9,18 @@ window.addEventListener("DOMContentLoaded", () => {
   let startX = 0;
   const loadedModels = {};
 
-  const modelMap = {
-    1: {
-      id: "model1",
-      path: "https://cdn.jsdelivr.net/gh/alinaparhom/BimMaxPro@main/dom11.4.gltf"
-    },
-    2: {
-      id: "model2",
-      path: "https://cdn.jsdelivr.net/gh/alinaparhom/BimMaxPro@main/depo8.gltf"
-    },
-    3: {
-      id: "model3",
-      path: "https://cdn.jsdelivr.net/gh/alinaparhom/BimMaxPro@main/depo9.gltf"
-    },
-    4: {
-      id: "model4",
-      path: "https://cdn.jsdelivr.net/gh/alinaparhom/BimMaxPro@main/pol11.gltf"
-    }
-  };
-
   function updatePosition(index) {
     track.style.transform = `translateX(-${index * 100}vw)`;
     dots.forEach((dot, i) => {
       dot.classList.toggle("active", i === index);
     });
+
+    const modelMap = {
+      1: { id: "model1", path: "dom11.4.gltf" },
+      2: { id: "model2", path: "depo8.gltf" },
+      3: { id: "model3", path: "depo9.gltf" },
+      4: { id: "model4", path: "pol11.gltf" },
+    };
 
     if (modelMap[index] && !loadedModels[index]) {
       initViewer(modelMap[index].id, modelMap[index].path);
@@ -67,8 +55,8 @@ window.addEventListener("DOMContentLoaded", () => {
       0.1,
       1000
     );
-    camera.position.set(0, 50, 100); // ближе и выше
-    camera.lookAt(0, 0, 0);
+    camera.position.set(0, 160, 200);
+    camera.lookAt(0, 0, 0); // цель — центр сцены
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
@@ -86,8 +74,9 @@ window.addEventListener("DOMContentLoaded", () => {
       modelPath,
       (gltf) => {
         const model = gltf.scene;
-        model.scale.set(10, 10, 10);           // крупнее
-        model.position.set(0, -10, 0);         // немного ниже центра
+        model.scale.set(1.5, 1.5, 1.5);
+        model.position.y = -1.5; // Опускаем чуть ниже центр
+
         scene.add(model);
 
         function animate() {
