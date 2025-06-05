@@ -67,7 +67,7 @@ window.addEventListener("DOMContentLoaded", () => {
       0.1,
       1000
     );
-    camera.position.set(0, 160, 200); // поднята и отдалена камера
+    camera.position.set(0, 50, 100); // ближе и выше
     camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -86,9 +86,8 @@ window.addEventListener("DOMContentLoaded", () => {
       modelPath,
       (gltf) => {
         const model = gltf.scene;
-        model.scale.set(1.5, 1.5, 1.5);
-        model.position.y = -1.5;
-
+        model.scale.set(10, 10, 10);           // крупнее
+        model.position.set(0, -10, 0);         // немного ниже центра
         scene.add(model);
 
         function animate() {
@@ -96,7 +95,6 @@ window.addEventListener("DOMContentLoaded", () => {
           model.rotation.y += 0.005;
           renderer.render(scene, camera);
         }
-
         animate();
       },
       undefined,
