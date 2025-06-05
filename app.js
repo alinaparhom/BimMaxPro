@@ -49,7 +49,15 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(
+      45,
+      container.clientWidth / container.clientHeight,
+      0.1,
+      1000
+    );
+    camera.position.set(0, 160, 200);
+    camera.lookAt(0, 0, 0); // цель — центр сцены
+
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
@@ -58,21 +66,30 @@ window.addEventListener("DOMContentLoaded", () => {
     light.position.set(5, 5, 5);
     scene.add(light);
 
-    const loader = new THREE.GLTFLoader();
-    loader.load(modelPath, (gltf) => {
-      const model = gltf.scene;
-      model.scale.set(1.5, 1.5, 1.5);
-      scene.add(model);
-      camera.position.set(0, 1.5, 5);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambient);
 
-      function animate() {
-        requestAnimationFrame(animate);
-        model.rotation.y += 0.005;
-        renderer.render(scene, camera);
+    const loader = new THREE.GLTFLoader();
+    loader.load(
+      modelPath,
+      (gltf) => {
+        const model = gltf.scene;
+        model.scale.set(1.5, 1.5, 1.5);
+        model.position.y = -1.5; // Опускаем чуть ниже центр
+
+        scene.add(model);
+
+        function animate() {
+          requestAnimationFrame(animate);
+          model.rotation.y += 0.005;
+          renderer.render(scene, camera);
+        }
+        animate();
+      },
+      undefined,
+      (error) => {
+        console.error(`Ошибка загрузки модели ${modelPath}:`, error);
       }
-      animate();
-    }, undefined, (error) => {
-      console.error(`Ошибка загрузки модели ${modelPath}:`, error);
-    });
+    );
   }
 });
