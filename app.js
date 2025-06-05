@@ -1,19 +1,28 @@
-window.Telegram.WebApp.ready();
-Telegram.WebApp.expand(); // Разворачивает окно
+const track = document.querySelector(".carousel-track");
+const dots = document.querySelectorAll(".dot");
 
-// Запрос к backend API
-fetch("https://bimmaxpro.onrender.com/userdata")
-  .then((response) => response.json())
-  .then((data) => {
-    // Создаём HTML с полученными данными
-    const userHTML = `
-      <h2>Пользователь: ${data.name}</h2>
-      <p>Баланс: ${data.balance} ₽</p>
-      <p>Премиум: ${data.premium ? "Да" : "Нет"}</p>
-    `;
-    document.body.innerHTML += userHTML;
-  })
-  .catch((error) => {
-    console.error("Ошибка при получении данных:", error);
-    document.body.innerHTML += "<p style='color:red;'>Ошибка загрузки данных</p>";
+let currentIndex = 0;
+let startX = 0;
+
+window.Telegram.WebApp.ready();
+Telegram.WebApp.expand();
+
+function updatePosition() {
+  track.style.transform = `translateX(-${currentIndex * 100}vw)`;
+  dots.forEach((dot, i) => {
+    dot.classList.toggle("active", i === currentIndex);
   });
+}
+
+track.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+});
+
+track.addEventListener("touchend", (e) => {
+  const diff = e.changedTouches[0].clientX - startX;
+  if (diff < -50 && currentIndex < 4) currentIndex++;
+  else if (diff > 50 && currentIndex > 0) currentIndex--;
+  updatePosition();
+});
+
+updatePosition();
