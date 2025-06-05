@@ -76,7 +76,6 @@ window.addEventListener("DOMContentLoaded", () => {
         model.position.y = -1.5;
         scene.add(model);
 
-        // Автоматическая настройка камеры
         const box = new THREE.Box3().setFromObject(model);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
@@ -84,7 +83,7 @@ window.addEventListener("DOMContentLoaded", () => {
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = camera.fov * (Math.PI / 180);
         let distance = maxDim / (2 * Math.tan(fov / 2));
-        distance *= 1.5; // запас
+        distance *= 1.5;
 
         camera.position.set(center.x, center.y + maxDim * 0.5, center.z + distance);
         camera.lookAt(center);
