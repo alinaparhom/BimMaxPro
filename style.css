@@ -1,0 +1,10 @@
+body {
+  background-color: var(--tg-theme-bg-color, #ffffff);
+  color: var(--tg-theme-text-color, #000000);
+  font-family: sans-serif;
+  padding: 20px;
+}
+
+h1, h2, p {
+  color: var(--tg-theme-text-color, #000000);
+}
