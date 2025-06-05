@@ -55,7 +55,7 @@ window.addEventListener("DOMContentLoaded", () => {
       0.1,
       1000
     );
-    camera.position.set(0, 15, 25); // поднято и отдалено
+    camera.position.set(0, 160, 200); // поднято и отдалено
     camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
