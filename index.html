@@ -10,17 +10,47 @@
   <div class="carousel">
     <div class="carousel-track">
 
-      <!-- Приветствие -->
+      <!-- Стартовая страница -->
       <div class="page page-main">
         <h1>BIMMAX</h1>
         <p>Вся стройка у вас в кармане</p>
       </div>
 
-      <!-- Объекты -->
-      <div class="page"><div class="model-container" id="model1"></div><div class="object-name">MW 11.4</div><div class="progress">1%</div></div>
-      <div class="page"><div class="model-container" id="model2"></div><div class="object-name">DEPO 8</div><div class="progress">92%</div></div>
-      <div class="page"><div class="model-container" id="model3"></div><div class="object-name">DEPO 9</div><div class="progress">6%</div></div>
-      <div class="page"><div class="model-container" id="model4"></div><div class="object-name">11 Поликлиника</div><div class="progress">7%</div></div>
+      <!-- Страница 1 -->
+      <div class="page">
+        <div class="model-container" id="model1"></div>
+        <div class="object-name">MW 11.4</div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" style="width: 1%">1%</div>
+        </div>
+      </div>
+
+      <!-- Страница 2 -->
+      <div class="page">
+        <div class="model-container" id="model2"></div>
+        <div class="object-name">DEPO 8</div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" style="width: 92%">92%</div>
+        </div>
+      </div>
+
+      <!-- Страница 3 -->
+      <div class="page">
+        <div class="model-container" id="model3"></div>
+        <div class="object-name">DEPO 9</div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" style="width: 6%">6%</div>
+        </div>
+      </div>
+
+      <!-- Страница 4 -->
+      <div class="page">
+        <div class="model-container" id="model4"></div>
+        <div class="object-name">11 Поликлиника</div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" style="width: 7%">7%</div>
+        </div>
+      </div>
 
     </div>
 
@@ -33,10 +63,10 @@
     </div>
   </div>
 
-  <!-- Скрипты: ВАЖНО! r135 — совместимая версия -->
+  <!-- Скрипты -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.135.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.135.0/examples/js/loaders/GLTFLoader.js"></script>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
